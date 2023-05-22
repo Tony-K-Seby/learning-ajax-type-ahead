@@ -35,7 +35,19 @@ function searchCities(searchInput, cities) {
     })
 }
 
+function displayCities(e) {
+    const filteredResults = searchCities(e.target.value, cities)
+    const html = filteredResults.map(place => {
+        return `
+            <li>
+                <span class="name">${place.city}</span>    
+                <span class="population">${Intl.NumberFormat().format(place.population)}</span>    
+            </li>
+        `
+    }).join('')
 
+    searchResults.innerHTML = html
+}
 
 search.addEventListener('keyup', displayCities)
 search.addEventListener('change', displayCities)
